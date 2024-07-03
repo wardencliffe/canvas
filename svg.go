@@ -718,6 +718,10 @@ func (svg *svgParser) setAttribute(key, val string) {
 		} else {
 			svg.ctx.SetFill(svg.parsePaint(val))
 		}
+	case "fill-rule":
+		if strings.EqualFold(val, "evenodd") {
+			svg.ctx.SetFillRule(EvenOdd)
+		}
 	case "stroke":
 		if id := svg.parseUrlID(val); id != "" {
 			svg.activeDefs["stroke"] = svg.defs[id]
